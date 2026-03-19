@@ -10,14 +10,14 @@ for num in $numbers; do
     # 防止前导0被识别成八进制
     val=$((10#$num))
 
-    while [ $val -gt $expected ]; do
+    if [ $val -gt $expected ]; then
         # 格式化输出缺失的数字，补齐到两位，比如02
         missing=$(printf "%02d" $expected)
         echo "发现中断! 缺失: day${missing}"
         echo "请自行处理缺失!"
         exit 1
-        expected=$((expected + 1))
-    done
+        # expected=$((expected + 1)) # 永远运行不到,非必须
+    fi
 
     expected=$((val + 1))
 done
@@ -37,7 +37,7 @@ mkdir ${folder_name}
 touch ${file_name}
 
 info_file_name="${folder_name}/.info"
-start_time=$(date +%S)
+start_time=$(date +%s)
 echo "time:${start_time}" >$info_file_name
 echo "Folder:${folder_name}" >>$info_file_name
 echo "Qname:${Qname}" >>$info_file_name
