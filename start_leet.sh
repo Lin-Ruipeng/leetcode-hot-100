@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Welcome to LeetCode Hot 100 Program!"
+echo "Hello LeetCode!"
 printf "Time: %s\n" "$(date '+%Y-%m-%d %H:%M:%S')"
 
 numbers=$(ls -d day*_T* 2>/dev/null | sed -E 's/day([0-9]+)_T[0-9]+/\1/' | sort -n)
