@@ -49,7 +49,7 @@ using namespace std;
 
 auto main() -> int
 {
-    cout << "Hello World!\n" << endl;
+    cout << "Hello World!" << endl;
 }
 
 EOF
