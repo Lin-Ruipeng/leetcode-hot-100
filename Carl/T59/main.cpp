@@ -28,7 +28,7 @@ class Solution {
         res[i][j] = count++;
       }
       // 向左
-      for (; i > starty; --i) {
+      for (; j > starty; --j) {
         res[i][j] = count++;
       }
       // 向上
