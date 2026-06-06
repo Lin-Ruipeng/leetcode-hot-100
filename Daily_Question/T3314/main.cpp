@@ -1,4 +1,8 @@
 // T3314.构造最小位运算数组 I
+// T3315.构造最小位运算数组 II
+
+// 此代码对这题都有效
+
 #include <vector>
 
 using namespace std;
