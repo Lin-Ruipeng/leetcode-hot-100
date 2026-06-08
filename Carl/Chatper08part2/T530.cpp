@@ -1,5 +1,6 @@
 // T530.二叉树的元素最小差值
 #include <climits>
+#include <stack>
 #include <vector>
 
 using namespace std;
@@ -54,6 +55,31 @@ class Solution2 {
  public:
   int getMinimumDifference(TreeNode *root) {
     traversal(root);
+    return result;
+  }
+};
+
+// 层序遍历法
+class Solution {
+ public:
+  int getMinimumDifference(TreeNode *root) {
+    stack<TreeNode *> st;
+    TreeNode *cur = root;
+    TreeNode *pre = nullptr;
+    int result = INT_MAX;
+    while (cur || !st.empty()) {
+      if (cur) {
+        st.push(cur);
+        cur = cur->left;  // 左
+      } else {
+        cur = st.top();
+        st.pop();
+        if (pre) result = min(result, cur->val - pre->val);  // 中
+
+        pre = cur;
+        cur = cur->right;  // 右
+      }
+    }
     return result;
   }
 };
