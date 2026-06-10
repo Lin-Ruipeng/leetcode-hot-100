@@ -64,3 +64,46 @@ class Solution {
     return result;
   }
 };
+
+// 迭代法
+#include <stack>
+class Solution {
+ public:
+  vector<int> findMode(TreeNode* root) {
+    stack<TreeNode*> st;
+    TreeNode* cur = root;
+    TreeNode* pre = nullptr;
+    int maxCount = 0;  // 最大频率
+    int count = 0;     // 统计频率
+    vector<int> result;
+    while (cur || !st.empty()) {
+      if (cur) {
+        st.push(cur);     // 访问节点入栈
+        cur = cur->left;  // 左
+      } else {
+        cur = st.top();  // 中
+        st.pop();
+        if (pre == nullptr) {
+          count = 1;
+        } else if (pre->val == cur->val) {
+          ++count;
+        } else {
+          count = 1;  // 与前一个节点不同
+        }
+        if (count == maxCount) {
+          result.push_back(cur->val);
+        }
+
+        if (count > maxCount) {
+          maxCount = count;
+          result.clear();
+
+          result.push_back(cur->val);
+        }
+        pre = cur;
+        cur = cur->right;  // 右
+      }
+    }
+    return result;
+  }
+};
