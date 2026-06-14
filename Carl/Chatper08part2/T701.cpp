@@ -37,3 +37,32 @@ class Solution {
     return root;
   }
 };
+
+// 迭代法
+class Solution2 {
+ public:
+  TreeNode* insertIntoBST(TreeNode* root, int val) {
+    if (!root) {
+      TreeNode* node = new TreeNode(val);
+      return node;
+    }
+
+    TreeNode* cur = root;
+    // 记录上一个节点
+    TreeNode* parent = root;
+    while (cur) {
+      parent = cur;
+      if (cur->val > val)
+        cur = cur->left;
+      else
+        cur = cur->right;
+    }
+    TreeNode* node = new TreeNode(val);
+    // 使用parent节点赋值
+    if (val < parent->val)
+      parent->left = node;
+    else
+      parent->right = node;
+    return root;
+  }
+};
