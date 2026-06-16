@@ -47,3 +47,52 @@ class Solution {
     return root;
   }
 };
+
+// 迭代法
+class Solution2 {
+  TreeNode* deleteNodeOperation(TreeNode* target) {
+    if (!target) {
+      return target;
+    }
+    if (!target->right) {
+      return target->left;
+    }
+    TreeNode* cur = target->right;
+    while (cur->left) {
+      cur = cur->left;
+    }
+    cur->left = target->left;
+    return target->right;
+  }
+
+ public:
+  TreeNode* deleteNode(TreeNode* root, int key) {
+    if (!root) {
+      return root;
+    }
+    TreeNode* cur = root;
+    TreeNode* pre = nullptr;  // 记录父节点
+    while (cur) {
+      if (cur->val == key) {
+        break;
+      }
+      pre = cur;
+      if (cur->val > key) {
+        cur = cur->left;
+      } else {
+        cur = cur->right;
+      }
+    }
+    if (!pre) {  // 搜索树只有头节点
+      return deleteNodeOperation(cur);
+    }
+    // pre来判断是左还是右
+    if (pre->left && pre->left->val == key) {
+      pre->left = deleteNodeOperation(cur);
+    }
+    if (pre->right && pre->right->val == key) {
+      pre->right = deleteNodeOperation(cur);
+    }
+    return root;
+  }
+};
