@@ -1,5 +1,6 @@
 // 452. 用最少数量的箭引爆气球
-// 代码随想录 10.10
+// 代码随想录 10.11
+// 图 10-13 一看就懂
 #include <algorithm>
 #include <vector>
 using namespace std;
