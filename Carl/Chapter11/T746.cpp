@@ -17,3 +17,19 @@ class Solution {
     return min(dp[cost.size() - 1], dp[cost.size() - 2]);
   }
 };
+
+// 空间优化版本
+class Solution2 {
+ public:
+  int minCostClimbingStairs(vector<int>& cost) {
+    int dp0 = cost[0];
+    int dp1 = cost[1];
+    for (int i = 2; i < cost.size(); ++i) {
+      int dpi = min(dp0, dp1) + cost[i];
+      dp0 = dp1;
+      dp1 = dpi;
+    }
+    // 因为最后一步不用花体力,所以加上去了要减回去
+    return min(dp0, dp1);
+  }
+};
